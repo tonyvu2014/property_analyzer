@@ -69,18 +69,19 @@ func analyzeHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err.Error())
 	}
 	body, err := ioutil.ReadAll(res.Body)
-    if err != nil {
-        panic(err.Error())
+    	if err != nil {
+        	panic(err.Error())
 	}
 	
-	l, err := getStations([]byte(body))
+	l, err := getListings([]byte(body))
 
 	t, _ := template.ParseFiles("result.html")
-    t.Execute(w, &l)
+	
+    	t.Execute(w, &l)
 }
 
 func main() {
 	http.HandleFunc("/view", viewHandler)
 	http.HandleFunc("/analyze", analyzeHandler)
-    log.Fatal(http.ListenAndServe(":8000", nil))
+	log.Fatal(http.ListenAndServe(":8000", nil))
 }
