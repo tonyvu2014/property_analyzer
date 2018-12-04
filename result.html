@@ -1,5 +1,49 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Property Analyzer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
 <h1>Property Analyzer</h1>
-
 <form action="/analyze" method="GET">
-<div><input type="submit" value="Analyze"></div>
+<div><button type="submit" class="btn btn-primary">Analyze</button></div>
 </form>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <td>Site</td>
+            <td>Adrress</td>
+            <td>Property Type</td>
+            <td>Bedrooms</td>
+            <td>Bathrooms</td>
+            <td>Parking Lots</td>
+            <td>Link</td>
+            <td>Advertised Price</td>
+            <td>Estimated Price</td>
+            <td>Estimated Difference</td>    
+            </tr>
+        </thead>
+        <tbody>
+            {{range .}}
+                <tr>
+                    <td>{{.site}}</td>  
+                    <td>{{.address}}</td>
+                    <td>{{.property_type}}</td>
+                    <td>{{.bedrooms}}</td>
+                    <td>{{.bathrooms}}</td>
+                    <td>{{.parkings}}</td>
+                    <td>{{.url}}</td>
+                    <td>${{.price}}</td>
+                    <td>${{.estimated_price}}</td>
+                    <td>{{.diff}}%</td>    
+                </tr>
+            {{end}}
+        </tbody>
+    </table>    
+</div>
+</body>
+</html>
